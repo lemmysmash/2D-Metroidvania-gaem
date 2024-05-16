@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0ghi11q4kiqn"]
+[gd_scene load_steps=7 format=3 uid="uid://d0ghi11q4kiqn"]
 
 [ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_hrfkp"]
 [ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="1_rxkfd"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://Character/Scripts/WalkState.cs" id="3_xnbdk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k2jhw"]
+height = 26.0
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_8tdfo"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(479, 457)
@@ -20,7 +23,11 @@ states = [NodePath("WalkState")]
 script = ExtResource("3_xnbdk")
 playerPhysics = NodePath("../..")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 18.14)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.34)
 shape = SubResource("CapsuleShape2D_k2jhw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -28,3 +35,7 @@ scale = Vector2(0.155, 0.26)
 texture = ExtResource("1_rxkfd")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.825)
+shape = SubResource("SeparationRayShape2D_8tdfo")

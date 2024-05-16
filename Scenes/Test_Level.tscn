@@ -25,6 +25,24 @@ position = Vector2(486, 597)
 scale = Vector2(24.945, 1)
 texture = ExtResource("1_s4ay8")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Area2D"]
+position = Vector2(1094, 546)
+rotation = -0.19836
+scale = Vector2(4.9818, 1)
+texture = ExtResource("1_s4ay8")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Area2D"]
+position = Vector2(1187, 482)
+rotation = -0.607109
+scale = Vector2(2.63427, 1)
+texture = ExtResource("1_s4ay8")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Area2D"]
+position = Vector2(1358.32, 304.191)
+rotation = -1.02775
+scale = Vector2(1.85026, 1)
+texture = ExtResource("1_s4ay8")
+
 [node name="CharacterBody2D" parent="." node_paths=PackedStringArray("testObject") instance=ExtResource("2_k3a0f")]
 position = Vector2(479, 517)
 testObject = NodePath("../MeshInstance2D")
@@ -39,8 +57,13 @@ player = NodePath("../CharacterBody2D")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(350, 523)
+position = Vector2(26, 527)
 shape = SubResource("RectangleShape2D_ygia8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(583, 530)
+build_mode = 1
+polygon = PackedVector2Array(227, 7, 916, 2, 782, -360, 665, -168, 490, -47)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 position = Vector2(78.1628, 390.645)
