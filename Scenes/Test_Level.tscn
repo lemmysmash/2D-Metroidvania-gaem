@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6xdj3fxw0tl3"]
+
+[ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="1_s4ay8"]
+[ext_resource type="PackedScene" uid="uid://d0ghi11q4kiqn" path="res://Character/Character.tscn" id="2_k3a0f"]
+[ext_resource type="Script" path="res://Scripts/Camera.cs" id="3_c6hsw"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k0hk6"]
+normal = Vector2(0, 1)
+distance = 531.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygia8"]
+size = Vector2(50, 47)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sfakm"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("WorldBoundaryShape2D_k0hk6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(486, 597)
+scale = Vector2(24.945, 1)
+texture = ExtResource("1_s4ay8")
+
+[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("testObject") instance=ExtResource("2_k3a0f")]
+position = Vector2(479, 517)
+testObject = NodePath("../MeshInstance2D")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(482, 515)
+zoom = Vector2(2, 2)
+position_smoothing_speed = 10.0
+script = ExtResource("3_c6hsw")
+player = NodePath("../CharacterBody2D")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(350, 523)
+shape = SubResource("RectangleShape2D_ygia8")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(78.1628, 390.645)
+mesh = SubResource("BoxMesh_sfakm")
