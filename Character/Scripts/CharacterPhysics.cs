@@ -75,6 +75,6 @@ public partial class CharacterPhysics : CharacterBody2D
 
 		testObject.Position = Position + Velocity;
 
-		GD.Print("ballz");
+		GD.Print("balls");
 	}
 }
