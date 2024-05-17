@@ -52,9 +52,9 @@ public partial class CharacterPhysics : CharacterBody2D
 		Velocity = Velocity + direction;
 	}
 
-	public void movePlayer(float delta, float speed, float friction)
+	public void movePlayer(float speed, float friction)
 	{
-		addVelocity(alignedMove * speed * delta + -Velocity * friction * delta);
+		addVelocity(alignedMove * speed + -Velocity * friction);
 		//addVelocity(-Velocity * friction * delta);
 
 		MoveAndSlide();

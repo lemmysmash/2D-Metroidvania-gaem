@@ -14,12 +14,12 @@ public partial class WalkState : Node
 
 	public void stateUpdate(float delta)
 	{
-		playerPhysics.movePlayer(delta, speed, friction);
-		playerPhysics.alignWithGround();
+
 	}
 
 	public void statePhysicsUpdate()
 	{
-
+		playerPhysics.movePlayer(speed, friction);
+		playerPhysics.alignWithGround();
 	}
 }

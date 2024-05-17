@@ -22,6 +22,8 @@ states = [NodePath("WalkState")]
 [node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics")]
 script = ExtResource("3_xnbdk")
 playerPhysics = NodePath("../..")
+speed = 80.0
+friction = 0.1
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 18.14)
@@ -31,10 +33,9 @@ position = Vector2(0, -3.34)
 shape = SubResource("CapsuleShape2D_k2jhw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.155, 0.26)
+position = Vector2(0, -3.82)
+scale = Vector2(0.155, 0.200312)
 texture = ExtResource("1_rxkfd")
-
-[node name="Sprite2D2" type="Sprite2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.825)
