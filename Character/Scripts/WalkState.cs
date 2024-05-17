@@ -4,6 +4,7 @@ using System;
 public partial class WalkState : Node
 {
 	[Export] CharacterPhysics playerPhysics;
+	[Export] StateMachine playerState;
 	[Export] float speed = 800f;
 	[Export] float friction = 3f;
 
@@ -14,7 +15,10 @@ public partial class WalkState : Node
 
 	public void stateUpdate(float delta)
 	{
-
+		if (playerPhysics.jump)
+		{
+			playerState.stateID = 1;
+		}
 	}
 
 	public void statePhysicsUpdate()

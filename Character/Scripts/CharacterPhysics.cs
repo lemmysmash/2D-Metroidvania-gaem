@@ -4,7 +4,7 @@ using System;
 public partial class CharacterPhysics : CharacterBody2D
 {
 	float move;
-	bool jump;
+	public bool jump;
 	bool helperBool;
 	Vector2 previousVelocity;
 	Vector2 velocity;

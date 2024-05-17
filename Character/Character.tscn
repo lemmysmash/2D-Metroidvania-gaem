@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0ghi11q4kiqn"]
+[gd_scene load_steps=8 format=3 uid="uid://d0ghi11q4kiqn"]
 
 [ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_hrfkp"]
-[ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="1_rxkfd"]
 [ext_resource type="Script" path="res://Character/Scripts/StateMachine.cs" id="2_jxxpk"]
 [ext_resource type="Script" path="res://Character/Scripts/WalkState.cs" id="3_xnbdk"]
+[ext_resource type="Script" path="res://Character/Scripts/jumpState.cs" id="4_s3br4"]
+[ext_resource type="SpriteFrames" uid="uid://b1ng5bbm05c8x" path="res://Character/Character.tres" id="4_t241w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k2jhw"]
 height = 26.0
@@ -17,13 +18,17 @@ script = ExtResource("1_hrfkp")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("2_jxxpk")
-states = [NodePath("WalkState")]
+states = [NodePath("WalkState"), NodePath("jumpState")]
 
-[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics")]
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
 script = ExtResource("3_xnbdk")
 playerPhysics = NodePath("../..")
+playerState = NodePath("..")
 speed = 80.0
 friction = 0.1
+
+[node name="jumpState" type="Node" parent="StateMachine"]
+script = ExtResource("4_s3br4")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 18.14)
@@ -32,11 +37,12 @@ target_position = Vector2(0, 18.14)
 position = Vector2(0, -3.34)
 shape = SubResource("CapsuleShape2D_k2jhw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -3.82)
-scale = Vector2(0.155, 0.200312)
-texture = ExtResource("1_rxkfd")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 scale = Vector2(1, 0.825)
 shape = SubResource("SeparationRayShape2D_8tdfo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_t241w")
+autoplay = "default"
+frame = 6
+frame_progress = 0.568888
