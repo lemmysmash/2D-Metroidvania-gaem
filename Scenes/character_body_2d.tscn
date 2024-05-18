@@ -1,0 +1,74 @@
+[gd_scene load_steps=12 format=3 uid="uid://b600npl0wq1kp"]
+
+[ext_resource type="Script" path="res://Scripts/player2.cs" id="1_7w6aj"]
+[ext_resource type="Texture2D" uid="uid://b1bd8ckjhfgu8" path="res://Character/proba character.png" id="2_3j7lu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr7m4"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_620h0"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olgoc"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exiuh"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sev5"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wijtj"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdyer"]
+atlas = ExtResource("2_3j7lu")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q501s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr7m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_620h0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olgoc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exiuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sev5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wijtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdyer")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_upoiw"]
+radius = 16.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_7w6aj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q501s")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_upoiw")

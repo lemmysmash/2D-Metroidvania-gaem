@@ -7,7 +7,8 @@
 [ext_resource type="SpriteFrames" uid="uid://b1ng5bbm05c8x" path="res://Character/Character.tres" id="4_t241w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k2jhw"]
-height = 26.0
+radius = 14.0
+height = 28.0
 
 [sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_8tdfo"]
 
@@ -34,6 +35,7 @@ script = ExtResource("4_s3br4")
 target_position = Vector2(0, 18.14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 5
 position = Vector2(0, -3.34)
 shape = SubResource("CapsuleShape2D_k2jhw")
 
@@ -42,6 +44,7 @@ scale = Vector2(1, 0.825)
 shape = SubResource("SeparationRayShape2D_8tdfo")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
 sprite_frames = ExtResource("4_t241w")
 autoplay = "default"
 frame = 6
