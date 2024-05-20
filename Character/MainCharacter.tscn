@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://b61amcuubc7re"]
+
+[ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_nn3tq"]
+[ext_resource type="Script" path="res://Character/Scripts/StateMachine.cs" id="2_f52uw"]
+[ext_resource type="Script" path="res://Character/Scripts/WalkState.cs" id="3_hsr7l"]
+[ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="4_ux2gy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72gqs"]
+
+[node name="MainCharacter" type="RigidBody2D"]
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+script = ExtResource("1_nn3tq")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
+script = ExtResource("2_f52uw")
+states = [NodePath("WalkState")]
+
+[node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
+script = ExtResource("3_hsr7l")
+playerPhysics = NodePath("../..")
+playerState = NodePath("..")
+speed = 1000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_72gqs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.85, 1.195)
+texture = ExtResource("4_ux2gy")

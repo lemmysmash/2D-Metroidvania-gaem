@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b600npl0wq1kp"]
+[gd_scene load_steps=12 format=3 uid="uid://xcuq1kpghqvp"]
 
 [ext_resource type="Script" path="res://Scripts/player2.cs" id="1_7w6aj"]
 [ext_resource type="Texture2D" uid="uid://b1bd8ckjhfgu8" path="res://Character/proba character.png" id="2_3j7lu"]

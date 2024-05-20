@@ -19,11 +19,12 @@ public partial class WalkState : Node
 		{
 			playerState.stateID = 1;
 		}
+		//playerPhysics.movePlayer(80f, 0.5f);
 	}
 
 	public void statePhysicsUpdate()
 	{
 		playerPhysics.movePlayer(speed, friction);
-		playerPhysics.alignWithGround();
+		//playerPhysics.alignWithGround();
 	}
 }

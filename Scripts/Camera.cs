@@ -8,7 +8,7 @@ public partial class Camera : Camera2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _PhysicsProcess(double delta)
     {
-		//Position = Position.Lerp(player.Position, 0.1f);
-		//Position = player.Position;
+		Position = Position.Lerp(player.Position, 0.1f);
+		Position = player.Position;
 	}
 }
