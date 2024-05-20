@@ -1,11 +1,35 @@
 using Godot;
 using System;
 
-public partial class CharacterPhysics : RigidBody2D
+public partial class CharacterPhysics : CharacterBody2D
 {
 	public bool jump;
 	float move;
 	Vector2 alignedMove;
+	bool helperBool;
+
+	public bool down(bool subject)
+	{
+		if(subject && helperBool)
+		{
+			helperBool = false;
+			return true;
+		}
+		else if(subject && !helperBool)
+		{
+			helperBool = false;
+			return false;
+		}
+		else if(!subject && !helperBool)
+		{
+			helperBool = true;
+			return false;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public override void _Input(InputEvent @event)
 	{
@@ -19,9 +43,19 @@ public partial class CharacterPhysics : RigidBody2D
         alignedMove = new Vector2(move, 0f);
     }
 
-    public void movePlayer(float speed, float friction)
+	public void addVelocity(Vector2 direction)
 	{
-		ApplyCentralForce(alignedMove * speed);
-		ApplyCentralForce(-LinearVelocity * friction);
+		Velocity = Velocity + direction;
+	}
+
+    public void playerMove(float speed, float friction)
+	{
+		addVelocity(alignedMove * speed);
+		addVelocity(-Velocity * friction);
+	}
+
+	public void applyGravity(float gravity)
+	{
+		addVelocity(-Vector2.Up * gravity);
 	}
 }

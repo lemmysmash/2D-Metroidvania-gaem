@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6xdj3fxw0tl3"]
+[gd_scene load_steps=6 format=3 uid="uid://c6xdj3fxw0tl3"]
 
 [ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="1_s4ay8"]
 [ext_resource type="PackedScene" uid="uid://b61amcuubc7re" path="res://Character/MainCharacter.tscn" id="3_lk88y"]
-[ext_resource type="PackedScene" uid="uid://c25uh3mpolmr3" path="res://Scenes/proba.tscn" id="4_qx55h"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k0hk6"]
 normal = Vector2(0, 1)
@@ -13,92 +12,7 @@ distance = -37.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_sfakm"]
 
-[sub_resource type="Animation" id="Animation_f26ja"]
-<<<<<<< HEAD
-length = 0.001
-=======
->>>>>>> 8bf66231e749a52166fd483f88229b465d4b0e4b
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-<<<<<<< HEAD
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(298, 464)]
-=======
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(298, 464), Vector2(347, 441)]
->>>>>>> 8bf66231e749a52166fd483f88229b465d4b0e4b
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_5uxk6"]
-resource_name = "proba"
-length = 1.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(298, 464), Vector2(360, 444)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -0.66148]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7g3yc"]
-_data = {
-"RESET": SubResource("Animation_f26ja"),
-"proba": SubResource("Animation_5uxk6")
-}
-
 [node name="Node2D" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(536, 442)
-zoom = Vector2(0.6, 0.6)
-position_smoothing_speed = 20.0
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D2" node_paths=PackedStringArray("player")]
-position = Vector2(46, 4)
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-script = ExtResource("3_c6hsw")
-player = NodePath("../../CharacterBody2D")
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -128,13 +42,6 @@ rotation = -1.02775
 scale = Vector2(1.85026, 1)
 texture = ExtResource("1_s4ay8")
 
-<<<<<<< HEAD
-=======
-[node name="CharacterBody2D" parent="." node_paths=PackedStringArray("testObject") instance=ExtResource("2_k3a0f")]
-position = Vector2(479, 517)
-testObject = NodePath("../MeshInstance2D")
-
->>>>>>> 8bf66231e749a52166fd483f88229b465d4b0e4b
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -150,14 +57,16 @@ polygon = PackedVector2Array(227, 7, 916, 2, 782, -360, 665, -168, 490, -47)
 position = Vector2(78.1628, 390.645)
 mesh = SubResource("BoxMesh_sfakm")
 
-[node name="proba" parent="." instance=ExtResource("4_qx55h")]
-position = Vector2(298, 464)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="proba"]
-libraries = {
-"": SubResource("AnimationLibrary_7g3yc")
-}
-autoplay = "proba"
-
 [node name="RigidBody2D" parent="." instance=ExtResource("3_lk88y")]
-position = Vector2(534, 440)
+position = Vector2(530, 464)
+
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
+position = Vector2(2, 2)
+zoom = Vector2(0.6, 0.6)
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 15.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 278)
+texture = ExtResource("1_s4ay8")

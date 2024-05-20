@@ -5,8 +5,8 @@ public partial class WalkState : Node
 {
 	[Export] CharacterPhysics playerPhysics;
 	[Export] StateMachine playerState;
-	[Export] float speed = 800f;
-	[Export] float friction = 3f;
+	[Export] float speed = 100f;
+	[Export] float friction = 0.1f;
 
 	public void stateEnter()
 	{
@@ -19,12 +19,12 @@ public partial class WalkState : Node
 		{
 			playerState.stateID = 1;
 		}
-		//playerPhysics.movePlayer(80f, 0.5f);
 	}
 
 	public void statePhysicsUpdate()
 	{
-		playerPhysics.movePlayer(speed, friction);
+		playerPhysics.playerMove(speed, friction);
 		//playerPhysics.alignWithGround();
+		playerPhysics.MoveAndSlide();
 	}
 }

@@ -1,32 +1,82 @@
-[gd_scene load_steps=6 format=3 uid="uid://b61amcuubc7re"]
+[gd_scene load_steps=13 format=3 uid="uid://b61amcuubc7re"]
 
 [ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_nn3tq"]
 [ext_resource type="Script" path="res://Character/Scripts/StateMachine.cs" id="2_f52uw"]
 [ext_resource type="Script" path="res://Character/Scripts/WalkState.cs" id="3_hsr7l"]
-[ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="4_ux2gy"]
+[ext_resource type="Script" path="res://Character/Scripts/jumpState.cs" id="4_5kbsx"]
+[ext_resource type="Texture2D" uid="uid://cfnd1dqjxlljj" path="res://Character/test 1.png" id="4_o1rln"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72gqs"]
 
-[node name="MainCharacter" type="RigidBody2D"]
-gravity_scale = 0.0
-can_sleep = false
-lock_rotation = true
+[sub_resource type="AtlasTexture" id="AtlasTexture_drp2v"]
+atlas = ExtResource("4_o1rln")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_for0i"]
+atlas = ExtResource("4_o1rln")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fjqn"]
+atlas = ExtResource("4_o1rln")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_erovj"]
+atlas = ExtResource("4_o1rln")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yf832"]
+atlas = ExtResource("4_o1rln")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mcdcx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drp2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_for0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fjqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_erovj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yf832")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="MainCharacter" type="CharacterBody2D"]
 script = ExtResource("1_nn3tq")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("2_f52uw")
-states = [NodePath("WalkState")]
+states = [NodePath("WalkState"), NodePath("JumpState")]
 
 [node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
 script = ExtResource("3_hsr7l")
 playerPhysics = NodePath("../..")
 playerState = NodePath("..")
-speed = 1000.0
+
+[node name="JumpState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
+script = ExtResource("4_5kbsx")
+playerPhysics = NodePath("../..")
+playerState = NodePath("..")
+initialJumpForce = 100.0
+holdJumpForce = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(5, 5)
+scale = Vector2(2.655, 5)
 shape = SubResource("CapsuleShape2D_72gqs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.85, 1.195)
-texture = ExtResource("4_ux2gy")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(10, -20)
+scale = Vector2(3.458, 3.128)
+sprite_frames = SubResource("SpriteFrames_mcdcx")
+autoplay = "default"
+frame_progress = 0.954569
