@@ -7,6 +7,8 @@ public partial class CharacterPhysics : CharacterBody2D
 	float move;
 	Vector2 alignedMove;
 	bool helperBool;
+	Vector2 deafultScale;
+	[Export] Node2D playerBody;
 
 	public bool down(bool subject)
 	{
@@ -38,6 +40,11 @@ public partial class CharacterPhysics : CharacterBody2D
 		jump = Input.IsActionPressed("Jump");
 	}
 
+    public override void _Ready()
+    {
+        deafultScale = playerBody.Scale;
+    }
+
     public override void _Process(double delta)
     {
         alignedMove = new Vector2(move, 0f);
@@ -52,6 +59,15 @@ public partial class CharacterPhysics : CharacterBody2D
 	{
 		addVelocity(alignedMove * speed);
 		addVelocity(-Velocity * friction);
+
+		if(Velocity.X > 0.05f)
+		{
+			playerBody.Scale = deafultScale;
+		}
+		if(Velocity.X < -0.05f)
+		{
+			playerBody.Scale = new Vector2(-deafultScale.X, deafultScale.Y);
+		}
 	}
 
 	public void applyGravity(float gravity)

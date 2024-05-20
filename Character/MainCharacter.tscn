@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfnd1dqjxlljj" path="res://Character/test 1.png" id="4_o1rln"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72gqs"]
+height = 27.6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drp2v"]
 atlas = ExtResource("4_o1rln")
@@ -51,8 +52,11 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="MainCharacter" type="CharacterBody2D"]
+[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody")]
+floor_constant_speed = true
+floor_snap_length = 0.0
 script = ExtResource("1_nn3tq")
+playerBody = NodePath("AnimatedSprite2D")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("2_f52uw")
@@ -70,6 +74,7 @@ playerState = NodePath("..")
 maxJumpTime = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -8)
 scale = Vector2(2.655, 5)
 shape = SubResource("CapsuleShape2D_72gqs")
 
@@ -79,3 +84,6 @@ scale = Vector2(3.458, 3.128)
 sprite_frames = SubResource("SpriteFrames_mcdcx")
 autoplay = "default"
 frame_progress = 0.954569
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 86)
