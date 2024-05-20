@@ -67,8 +67,7 @@ playerState = NodePath("..")
 script = ExtResource("4_5kbsx")
 playerPhysics = NodePath("../..")
 playerState = NodePath("..")
-initialJumpForce = 100.0
-holdJumpForce = 10.0
+maxJumpTime = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(2.655, 5)

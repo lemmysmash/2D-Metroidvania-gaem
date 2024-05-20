@@ -58,7 +58,7 @@ position = Vector2(78.1628, 390.645)
 mesh = SubResource("BoxMesh_sfakm")
 
 [node name="RigidBody2D" parent="." instance=ExtResource("3_lk88y")]
-position = Vector2(530, 464)
+position = Vector2(528, 458)
 
 [node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
 position = Vector2(2, 2)
