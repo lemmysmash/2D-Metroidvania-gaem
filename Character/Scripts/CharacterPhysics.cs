@@ -9,6 +9,10 @@ public partial class CharacterPhysics : CharacterBody2D
 	bool helperBool;
 	Vector2 deafultScale;
 	[Export] Node2D playerBody;
+	[Export] public RayCast2D groundDetection;
+	[Export] public float goundedness;
+	public float timeSinceLeftGround;
+	[Export] Node2D testObject;
 
 	public bool down(bool subject)
 	{
@@ -48,6 +52,13 @@ public partial class CharacterPhysics : CharacterBody2D
     public override void _Process(double delta)
     {
         alignedMove = new Vector2(move, 0f);
+
+		if(groundDetection.GetCollisionPoint().DistanceTo(Position + (Rotation * Vector2.Up)) > goundedness)
+		{
+			timeSinceLeftGround += (float)delta;
+		}
+
+		//testObject.Position = Position + (Rotation * Vector2.Up);
     }
 
 	public void addVelocity(Vector2 direction)

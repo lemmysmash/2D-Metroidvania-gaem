@@ -15,7 +15,7 @@ public partial class WalkState : Node
 
 	public void stateUpdate(float delta)
 	{
-		if (playerPhysics.jump)
+		if (playerPhysics.down(playerPhysics.jump))
 		{
 			playerState.stateID = 1;
 		}
@@ -23,6 +23,11 @@ public partial class WalkState : Node
 
 	public void statePhysicsUpdate()
 	{
+		if(playerPhysics.groundDetection.GetCollisionPoint().DistanceTo(playerPhysics.Position + (playerPhysics.Rotation * Vector2.Up)) > playerPhysics.goundedness)
+		{
+			playerState.stateID = 2;
+		}
+
 		playerPhysics.playerMove(speed, friction);
 		//playerPhysics.alignWithGround();
 		playerPhysics.MoveAndSlide();

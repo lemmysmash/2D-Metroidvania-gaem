@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://b61amcuubc7re"]
+[gd_scene load_steps=14 format=3 uid="uid://b61amcuubc7re"]
 
 [ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_nn3tq"]
 [ext_resource type="Script" path="res://Character/Scripts/StateMachine.cs" id="2_f52uw"]
 [ext_resource type="Script" path="res://Character/Scripts/WalkState.cs" id="3_hsr7l"]
 [ext_resource type="Script" path="res://Character/Scripts/jumpState.cs" id="4_5kbsx"]
 [ext_resource type="Texture2D" uid="uid://cfnd1dqjxlljj" path="res://Character/test 1.png" id="4_o1rln"]
+[ext_resource type="Script" path="res://Character/Scripts/FallState.cs" id="5_poupa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72gqs"]
 height = 27.6
@@ -52,15 +53,17 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody")]
+[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody", "groundDetection")]
 floor_constant_speed = true
 floor_snap_length = 0.0
 script = ExtResource("1_nn3tq")
 playerBody = NodePath("AnimatedSprite2D")
+groundDetection = NodePath("RayCast2D")
+goundedness = 85.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("2_f52uw")
-states = [NodePath("WalkState"), NodePath("JumpState")]
+states = [NodePath("WalkState"), NodePath("JumpState"), NodePath("FallState")]
 
 [node name="WalkState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
 script = ExtResource("3_hsr7l")
@@ -71,7 +74,14 @@ playerState = NodePath("..")
 script = ExtResource("4_5kbsx")
 playerPhysics = NodePath("../..")
 playerState = NodePath("..")
-maxJumpTime = 0.15
+initialJumpForce = 700.0
+holdJumpForce = 280.0
+maxJumpTime = 0.2
+
+[node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
+script = ExtResource("5_poupa")
+playerPhysics = NodePath("../..")
+playerState = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -8)
@@ -86,4 +96,4 @@ autoplay = "default"
 frame_progress = 0.954569
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 86)
+target_position = Vector2(0, 90)
