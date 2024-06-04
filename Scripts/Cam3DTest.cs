@@ -11,5 +11,4 @@ public partial class Cam3DTest : Camera3D
 
         Rotation = new Vector3(0f, yrot, 0f);
     }
-    //test
 }
