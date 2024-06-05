@@ -53,12 +53,7 @@ public partial class CharacterPhysics : CharacterBody2D
     {
         alignedMove = new Vector2(move, 0f);
 
-		if(groundDetection.GetCollisionPoint().DistanceTo(Position + (Rotation * Vector2.Up)) > goundedness)
-		{
-			timeSinceLeftGround += (float)delta;
-		}
-
-		//testObject.Position = Position + (Rotation * Vector2.Up);
+		GD.Print(timeSinceLeftGround);
     }
 
 	public void addVelocity(Vector2 direction)

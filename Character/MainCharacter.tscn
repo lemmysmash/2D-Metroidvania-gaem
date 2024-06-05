@@ -74,9 +74,6 @@ playerState = NodePath("..")
 script = ExtResource("4_5kbsx")
 playerPhysics = NodePath("../..")
 playerState = NodePath("..")
-initialJumpForce = 700.0
-holdJumpForce = 280.0
-maxJumpTime = 0.2
 
 [node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
 script = ExtResource("5_poupa")

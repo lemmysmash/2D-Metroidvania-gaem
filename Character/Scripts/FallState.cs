@@ -16,11 +16,13 @@ public partial class FallState : Node
 
 	public void stateUpdate(float delta)
 	{
-		playerPhysics.timeSinceLeftGround += delta;
+		
 	}
 
 	public void statePhysicsUpdate()
 	{
+		playerPhysics.timeSinceLeftGround += 0.1f;
+
 		if(playerPhysics.groundDetection.IsColliding() && playerPhysics.groundDetection.GetCollisionPoint().DistanceTo(playerPhysics.Position + (playerPhysics.Rotation * Vector2.Up)) < playerPhysics.goundedness)
 		{
 			playerPhysics.timeSinceLeftGround = 0f;
