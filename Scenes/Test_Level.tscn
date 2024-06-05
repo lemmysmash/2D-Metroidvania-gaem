@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6xdj3fxw0tl3"]
+[gd_scene load_steps=6 format=3 uid="uid://c6xdj3fxw0tl3"]
 
 [ext_resource type="Texture2D" uid="uid://db40ba50hglcd" path="res://icon.svg" id="1_s4ay8"]
 [ext_resource type="PackedScene" uid="uid://b61amcuubc7re" path="res://Character/MainCharacter.tscn" id="3_lk88y"]
@@ -12,8 +12,6 @@ distance = -37.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aavib"]
 size = Vector2(2034.68, 48)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sfakm"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -61,16 +59,13 @@ position = Vector2(583, 530)
 build_mode = 1
 polygon = PackedVector2Array(227, 7, 916, 2, 782, -360, 665, -168, 490, -47)
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(78.1628, 390.645)
-mesh = SubResource("BoxMesh_sfakm")
-
 [node name="RigidBody2D" parent="." node_paths=PackedStringArray("testObject") instance=ExtResource("3_lk88y")]
-position = Vector2(528, 458)
+position = Vector2(528, 538)
 testObject = NodePath("../Sprite2D")
 
 [node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
 position = Vector2(2, 2)
+offset = Vector2(0, -80)
 zoom = Vector2(0.6, 0.6)
 process_callback = 0
 position_smoothing_enabled = true

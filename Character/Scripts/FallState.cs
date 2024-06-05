@@ -23,7 +23,7 @@ public partial class FallState : Node
 	{
 		playerPhysics.timeSinceLeftGround += 0.1f;
 
-		if(playerPhysics.groundDetection.IsColliding() && playerPhysics.groundDetection.GetCollisionPoint().DistanceTo(playerPhysics.Position + (playerPhysics.Rotation * Vector2.Up)) < playerPhysics.goundedness)
+		if(playerPhysics.groundDetection.IsColliding() && playerPhysics.groundDetection.GetCollisionPoint().DistanceTo(playerPhysics.Position + (Vector2.Up * 80f).Rotated(playerPhysics.Rotation)) < playerPhysics.goundedness)
 		{
 			playerPhysics.timeSinceLeftGround = 0f;
 			playerState.stateID = 0;

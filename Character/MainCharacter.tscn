@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b61amcuubc7re"]
+[gd_scene load_steps=15 format=3 uid="uid://b61amcuubc7re"]
 
 [ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_nn3tq"]
 [ext_resource type="Script" path="res://Character/Scripts/StateMachine.cs" id="2_f52uw"]
@@ -9,6 +9,9 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_72gqs"]
 height = 27.6
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_boqx3"]
+length = 80.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_drp2v"]
 atlas = ExtResource("4_o1rln")
@@ -81,16 +84,22 @@ playerPhysics = NodePath("../..")
 playerState = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -8)
+position = Vector2(1, -87.904)
 scale = Vector2(2.655, 5)
 shape = SubResource("CapsuleShape2D_72gqs")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -80)
+shape = SubResource("SeparationRayShape2D_boqx3")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(10, -20)
+visible = false
+position = Vector2(10, -99.904)
 scale = Vector2(3.458, 3.128)
 sprite_frames = SubResource("SpriteFrames_mcdcx")
 autoplay = "default"
 frame_progress = 0.954569
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, -79.904)
 target_position = Vector2(0, 90)

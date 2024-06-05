@@ -19,17 +19,19 @@ public partial class WalkState : Node
 		{
 			playerState.stateID = 1;
 		}
+
+		playerPhysics.alignWithGround();
 	}
 
 	public void statePhysicsUpdate()
 	{
-		if(playerPhysics.groundDetection.GetCollisionPoint().DistanceTo(playerPhysics.Position + (playerPhysics.Rotation * Vector2.Up)) > playerPhysics.goundedness)
+		if((playerPhysics.Position + playerPhysics.groundDetection.Position).DistanceTo(playerPhysics.groundDetection.GetCollisionPoint()) > playerPhysics.goundedness)
 		{
+			//GD.Print((playerPhysics.Position + playerPhysics.groundDetection.Position).DistanceTo(playerPhysics.groundDetection.GetCollisionPoint()));
 			playerState.stateID = 2;
 		}
 
 		playerPhysics.playerMove(speed, friction);
-		//playerPhysics.alignWithGround();
 		playerPhysics.MoveAndSlide();
 	}
 }

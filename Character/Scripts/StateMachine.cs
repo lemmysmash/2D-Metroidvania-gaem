@@ -19,6 +19,8 @@ public partial class StateMachine : Node
 			currentState.Call("stateEnter");
 		}
 		currentState.Call("stateUpdate",(float)delta);
+
+		//GD.Print(stateID);
 	}
 
     public override void _PhysicsProcess(double delta)
