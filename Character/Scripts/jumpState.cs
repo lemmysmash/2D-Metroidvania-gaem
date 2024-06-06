@@ -11,10 +11,11 @@ public partial class jumpState : Node
 	[Export] float gravity = 90f;	
 	[Export] float airMoveSpeed = 25f;
 	[Export] float drag = 0.025f;
+	
 
 	public void stateEnter()
 	{
-		playerPhysics.addVelocity(Vector2.Up * initialJumpForce);
+		playerPhysics.addVelocity(playerPhysics.groundDetection.GetCollisionNormal() * initialJumpForce);
 	}
 
 	public void stateUpdate(float delta)
@@ -28,7 +29,7 @@ public partial class jumpState : Node
 
 		if(playerPhysics.jump && playerPhysics.timeSinceLeftGround < maxJumpTime)
 		{
-			playerPhysics.addVelocity(Vector2.Up * holdJumpForce);
+			playerPhysics.addVelocity(playerPhysics.groundDetection.GetCollisionNormal() * holdJumpForce);
 		}
 
 		if(playerPhysics.groundDetection.IsColliding() && playerPhysics.groundDetection.GetCollisionPoint().DistanceTo(playerPhysics.Position + (playerPhysics.Rotation * Vector2.Up)) < playerPhysics.goundedness && playerPhysics.timeSinceLeftGround > 0.5f)

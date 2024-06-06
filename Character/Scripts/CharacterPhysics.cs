@@ -13,6 +13,7 @@ public partial class CharacterPhysics : CharacterBody2D
 	[Export] public float goundedness;
 	public float timeSinceLeftGround;
 	[Export] Node2D testObject;
+	[Export] Area2D hitDetection;
 	
 
 	public bool down(bool subject)
@@ -57,7 +58,7 @@ public partial class CharacterPhysics : CharacterBody2D
 
 		//testObject.Position = Position + Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)) * Velocity;
 		//testObject.Position = Position + Velocity.Project(Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)));
-		testObject.Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
+		//testObject.Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
     }
 
 	public void addVelocity(Vector2 direction)

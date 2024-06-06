@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b61amcuubc7re"]
+[gd_scene load_steps=16 format=3 uid="uid://b61amcuubc7re"]
 
 [ext_resource type="Script" path="res://Character/Scripts/CharacterPhysics.cs" id="1_nn3tq"]
 [ext_resource type="Script" path="res://Character/Scripts/StateMachine.cs" id="2_f52uw"]
@@ -56,13 +56,16 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody", "groundDetection")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6esqn"]
+
+[node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody", "groundDetection", "hitDetection")]
 floor_constant_speed = true
 floor_snap_length = 10.0
 script = ExtResource("1_nn3tq")
-playerBody = NodePath("AnimatedSprite2D")
-groundDetection = NodePath("RayCast2D")
+playerBody = NodePath("PlayerBody")
+groundDetection = NodePath("GroundRaycast")
 goundedness = 90.0
+hitDetection = NodePath("HitDetection")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("2_f52uw")
@@ -83,16 +86,16 @@ script = ExtResource("5_poupa")
 playerPhysics = NodePath("../..")
 playerState = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CharacterCollision" type="CollisionShape2D" parent="."]
 position = Vector2(1, -87.904)
 scale = Vector2(2.655, 5)
 shape = SubResource("CapsuleShape2D_72gqs")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="FloatHelper" type="CollisionShape2D" parent="."]
 position = Vector2(0, -80)
 shape = SubResource("SeparationRayShape2D_boqx3")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerBody" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(10, -99.904)
 scale = Vector2(3.458, 3.128)
@@ -100,6 +103,13 @@ sprite_frames = SubResource("SpriteFrames_mcdcx")
 autoplay = "default"
 frame_progress = 0.954569
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="GroundRaycast" type="RayCast2D" parent="."]
 position = Vector2(0, -79.904)
 target_position = Vector2(0, 90)
+
+[node name="HitDetection" type="Area2D" parent="."]
+position = Vector2(66, -84)
+scale = Vector2(2.69063, 2.84708)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitDetection"]
+shape = SubResource("CircleShape2D_6esqn")
