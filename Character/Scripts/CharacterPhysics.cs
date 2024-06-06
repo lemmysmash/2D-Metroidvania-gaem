@@ -13,6 +13,7 @@ public partial class CharacterPhysics : CharacterBody2D
 	[Export] public float goundedness;
 	public float timeSinceLeftGround;
 	[Export] Node2D testObject;
+	
 
 	public bool down(bool subject)
 	{
@@ -54,7 +55,9 @@ public partial class CharacterPhysics : CharacterBody2D
         //alignedMove = new Vector2(move, 0f);
 		alignedMove = new Vector2(move, 0f).Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
 
-		testObject.Position = Position + alignedMove * 20f;
+		//testObject.Position = Position + Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)) * Velocity;
+		//testObject.Position = Position + Velocity.Project(Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)));
+		testObject.Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
     }
 
 	public void addVelocity(Vector2 direction)
@@ -89,6 +92,8 @@ public partial class CharacterPhysics : CharacterBody2D
 			//Velocity = Velocity + groundDetection.GetCollisionNormal() * (Velocity * groundDetection.GetCollisionNormal()).Length();
 			
 			GD.Print("sigehbi");
+			Velocity = Velocity.Project(Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)));
+			//Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));// + groundDetection.GetCollisionPoint() * groundDetection.GetCollisionNormal();
 		}
 		//GD.Print(groundDetection.GetCollisionPoint().DistanceTo(Position + (Rotation * Vector2.Up)));
 

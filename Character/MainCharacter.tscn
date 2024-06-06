@@ -58,11 +58,11 @@ animations = [{
 
 [node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody", "groundDetection")]
 floor_constant_speed = true
-floor_snap_length = 0.0
+floor_snap_length = 10.0
 script = ExtResource("1_nn3tq")
 playerBody = NodePath("AnimatedSprite2D")
 groundDetection = NodePath("RayCast2D")
-goundedness = 85.0
+goundedness = 90.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("states")]
 script = ExtResource("2_f52uw")
