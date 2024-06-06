@@ -92,7 +92,7 @@ public partial class CharacterPhysics : CharacterBody2D
 			//fucking dumb ass slopes, I hate them
 			//Velocity = Velocity + groundDetection.GetCollisionNormal() * (Velocity * groundDetection.GetCollisionNormal()).Length();
 			
-			GD.Print("sigehbi");
+			//GD.Print("sigehbi");
 			Velocity = Velocity.Project(Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)));
 			//Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));// + groundDetection.GetCollisionPoint() * groundDetection.GetCollisionNormal();
 		}
