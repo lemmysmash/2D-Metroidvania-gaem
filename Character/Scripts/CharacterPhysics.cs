@@ -53,7 +53,14 @@ public partial class CharacterPhysics : CharacterBody2D
 
     public override void _Process(double delta)
     {
-		alignedMove = new Vector2(move, 0f).Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
+		if(groundDetection.IsColliding())
+		{
+			alignedMove = new Vector2(move, 0f).Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
+		}
+		else
+		{
+			alignedMove = new Vector2(move, 0f);
+		}
 
 		detectHit();
     }
