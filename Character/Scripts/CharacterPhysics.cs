@@ -53,12 +53,9 @@ public partial class CharacterPhysics : CharacterBody2D
 
     public override void _Process(double delta)
     {
-        //alignedMove = new Vector2(move, 0f);
 		alignedMove = new Vector2(move, 0f).Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
 
-		//testObject.Position = Position + Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)) * Velocity;
-		//testObject.Position = Position + Velocity.Project(Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)));
-		//testObject.Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
+		detectHit();
     }
 
 	public void addVelocity(Vector2 direction)
@@ -85,26 +82,20 @@ public partial class CharacterPhysics : CharacterBody2D
 	{
 		if(groundDetection.IsColliding() && groundDetection.GetCollisionPoint().DistanceTo(Position + (Vector2.Up * 80f).Rotated(Rotation)) > 85f)
 		{
-			//this is correct, but its useless right now
-			//Position = Position + (Vector2.Up * 10f).Rotated(Rotation);
-			//Velocity = new Vector2(Velocity.X, 0f);
-
-			//fucking dumb ass slopes, I hate them
-			//Velocity = Velocity + groundDetection.GetCollisionNormal() * (Velocity * groundDetection.GetCollisionNormal()).Length();
-			
-			//GD.Print("sigehbi");
 			Velocity = Velocity.Project(Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up)));
-			//Position = Position * Vector2.Right.Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));// + groundDetection.GetCollisionPoint() * groundDetection.GetCollisionNormal();
 		}
-		//GD.Print(groundDetection.GetCollisionPoint().DistanceTo(Position + (Rotation * Vector2.Up)));
-
-		//testObject.Position = Position + ((Rotation * Vector2.Up) * 80f);
-		//testObject.Position = Position + (Rotation * Vector2.Up) * 80f;
-		//testObject.Position = new Vector2(Position.X, (groundDetection.GetCollisionPoint() * -groundDetection.GetCollisionNormal()).Y);
 	}
 
 	public void applyGravity(float gravity)
 	{
 		addVelocity(-Vector2.Up * gravity);
+	}
+
+	public void detectHit()
+	{
+		if(hitDetection.HasOverlappingBodies())
+		{	
+			GD.Print("we hit something");
+		}
 	}
 }
