@@ -104,7 +104,7 @@ autoplay = "default"
 frame_progress = 0.954569
 
 [node name="GroundRaycast" type="RayCast2D" parent="."]
-position = Vector2(0, -79.904)
+position = Vector2(0, -80)
 target_position = Vector2(0, 90)
 
 [node name="HitDetection" type="Area2D" parent="."]
