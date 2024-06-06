@@ -3,6 +3,7 @@ using System;
 
 public partial class CharacterPhysics : CharacterBody2D
 {
+	bool hit;
 	public bool jump;
 	float move;
 	Vector2 alignedMove;
@@ -44,6 +45,8 @@ public partial class CharacterPhysics : CharacterBody2D
 		move = Input.GetAxis("MoveLeft", "MoveRight");
 
 		jump = Input.IsActionPressed("Jump");
+
+		hit = Input.IsActionPressed("Hit");
 	}
 
     public override void _Ready()
@@ -61,9 +64,12 @@ public partial class CharacterPhysics : CharacterBody2D
 		{
 			alignedMove = new Vector2(move, 0f);
 		}
-
-		detectHit();
     }
+
+	public override void _PhysicsProcess(double delta)
+	{
+		detectHit();
+	}
 
 	public void addVelocity(Vector2 direction)
 	{
