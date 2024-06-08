@@ -7,7 +7,7 @@ public partial class CharacterPhysics : CharacterBody2D
 	public bool jump;
 	float move;
 	Vector2 alignedMove;
-	bool helperBool;
+	bool[] helperBool;
 	Vector2 deafultScale;
 	[Export] Node2D playerBody;
 	[Export] public RayCast2D groundDetection;
@@ -17,21 +17,26 @@ public partial class CharacterPhysics : CharacterBody2D
 	[Export] Area2D hitDetection;
 	
 
-	public bool down(bool subject)
+    public override void _Ready()
+    {
+        deafultScale = playerBody.Scale;
+    }
+
+	public bool down(bool subject, int index = 0)
 	{
-		if(subject && helperBool)
+		if(subject && helperBool[index])
 		{
-			helperBool = false;
+			helperBool[index] = false;
 			return true;
 		}
-		else if(subject && !helperBool)
+		else if(subject && !helperBool[index])
 		{
-			helperBool = false;
+			helperBool[index] = false;
 			return false;
 		}
-		else if(!subject && !helperBool)
+		else if(!subject && !helperBool[index])
 		{
-			helperBool = true;
+			helperBool[index] = true;
 			return false;
 		}
 		else
@@ -49,11 +54,6 @@ public partial class CharacterPhysics : CharacterBody2D
 		hit = Input.IsActionPressed("Hit");
 	}
 
-    public override void _Ready()
-    {
-        deafultScale = playerBody.Scale;
-    }
-
     public override void _Process(double delta)
     {
 		if(groundDetection.IsColliding())
@@ -68,7 +68,10 @@ public partial class CharacterPhysics : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		detectHit();
+		if(down(hit, 1))
+		{
+			detectHit();
+		}
 	}
 
 	public void addVelocity(Vector2 direction)
