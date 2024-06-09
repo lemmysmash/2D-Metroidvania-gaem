@@ -93,6 +93,7 @@ public partial class CharacterPhysics : CharacterBody2D
 
     public void playerMove(float speed, float friction)
 	{
+		//FIXME:when on slopes you tend to bounce, when changing directions
 		addVelocity(alignedMove * speed);
 		addVelocity(-Velocity * friction);
 
