@@ -65,6 +65,7 @@ public partial class CharacterPhysics : CharacterBody2D
 
     public override void _Process(double delta)
     {
+		//FIXME:asszem valami baj van itt, mert ha a játékos megfordul egy lejtőn, akkor pattan egyet
 		if(groundDetection.IsColliding())
 		{
 			alignedMove = new Vector2(move, 0f).Rotated(-groundDetection.GetCollisionNormal().AngleTo(Vector2.Up));
@@ -83,7 +84,6 @@ public partial class CharacterPhysics : CharacterBody2D
 		{
 			detectHit();
 		}
-		
 	}
 
 	public void addVelocity(Vector2 direction)
