@@ -24,6 +24,13 @@ public partial class CharacterPhysics : CharacterBody2D
 
 	public bool down(bool subject, int index = 0)
 	{
+		//if we use this function more, than we have before we make the available amount longer
+		if(helperBool == null)
+		{
+			helperBool = new bool[index + 1];
+		}
+
+
 		if(subject && helperBool[index])
 		{
 			helperBool[index] = false;
@@ -64,6 +71,8 @@ public partial class CharacterPhysics : CharacterBody2D
 		{
 			alignedMove = new Vector2(move, 0f);
 		}
+
+		//GD.Print(helperBool);
     }
 
 	public override void _PhysicsProcess(double delta)
