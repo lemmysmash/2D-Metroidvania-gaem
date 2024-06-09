@@ -60,6 +60,7 @@ animations = [{
 
 [node name="MainCharacter" type="CharacterBody2D" node_paths=PackedStringArray("playerBody", "groundDetection", "hitDetection")]
 floor_constant_speed = true
+floor_max_angle = 3.14159
 floor_snap_length = 10.0
 script = ExtResource("1_nn3tq")
 playerBody = NodePath("AnimatedSprite2D")
@@ -80,6 +81,7 @@ playerState = NodePath("..")
 script = ExtResource("4_5kbsx")
 playerPhysics = NodePath("../..")
 playerState = NodePath("..")
+groundAlignedJump = false
 
 [node name="FallState" type="Node" parent="StateMachine" node_paths=PackedStringArray("playerPhysics", "playerState")]
 script = ExtResource("5_poupa")

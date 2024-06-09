@@ -22,6 +22,8 @@ public partial class CharacterPhysics : CharacterBody2D
         deafultScale = playerBody.Scale;
     }
 
+
+	//used to get a one time signal out of a continuos signal
 	public bool down(bool subject, int index = 0)
 	{
 		//if we use this function more, than we have before we make the available amount longer
@@ -72,7 +74,7 @@ public partial class CharacterPhysics : CharacterBody2D
 			alignedMove = new Vector2(move, 0f);
 		}
 
-		//GD.Print(helperBool);
+		testObject.Position = Position + alignedMove * 30f;
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -81,6 +83,7 @@ public partial class CharacterPhysics : CharacterBody2D
 		{
 			detectHit();
 		}
+		
 	}
 
 	public void addVelocity(Vector2 direction)
